@@ -1,0 +1,357 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2113.6">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+    span.s1 {font: 12.0px 'Apple Color Emoji'}
+    span.s2 {font: 12.0px 'Lucida Grande'}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1">&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1">&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1">&lt;title&gt;Royersford Events Finder&lt;/title&gt;</p>
+<p class="p1">&lt;script src="https://unpkg.com/react@18/umd/react.production.min.js"&gt;&lt;/script&gt;</p>
+<p class="p1">&lt;script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"&gt;&lt;/script&gt;</p>
+<p class="p1">&lt;script src="https://unpkg.com/@babel/standalone/babel.min.js"&gt;&lt;/script&gt;</p>
+<p class="p1">&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body style="margin:0;"&gt;</p>
+<p class="p1">&lt;div id="event-root"&gt;&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;script type="text/babel"&gt;</p>
+<p class="p1">const { useState, useEffect, useMemo } = React;</p>
+<p class="p2"><br></p>
+<p class="p1">// EDIT THESE LOCAL EVENTS ANYTIME - Add your featured Royersford events here</p>
+<p class="p1">const localEvents = [</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{</p>
+<p class="p1"><span class="Apple-converted-space">    </span>id: "local-1",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>name: "Valhallan eSports Birthday Parties",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>date: "2025-12-31",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>city: "Royersford",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>state: "PA",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>category: "Community",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>description: "Year-round gaming birthday parties with private rooms and entertainment options for ages 8-18. Multiple packages available.",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>price: "Varies by package",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>venue: "Valhallan eSports Arena",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>url: "https://arenas.valhallan.com/royersford-pa-us/parties/",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>source: "Local Partner"</p>
+<p class="p1"><span class="Apple-converted-space">  </span>},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{</p>
+<p class="p1"><span class="Apple-converted-space">    </span>id: "local-2",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>name: "Royersford Parks &amp; Recreation Programs",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>date: "2025-12-31",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>city: "Royersford",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>state: "PA",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>category: "Community",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>description: "Ongoing recreation programs, sports leagues, and community activities. Check website for current schedule.",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>price: "Varies",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>venue: "Royersford Community Center",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>url: "https://www.royersfordborough.com/",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>source: "Local Partner"</p>
+<p class="p1"><span class="Apple-converted-space">  </span>},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{</p>
+<p class="p1"><span class="Apple-converted-space">    </span>id: "local-3",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>name: "Spring-Ford High School Sports &amp; Events",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>date: "2025-12-31",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>city: "Royersford",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>state: "PA",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>category: "Sports",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>description: "High school basketball, football, wrestling, and other sporting events. Check athletic calendar for game schedules.",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>price: "Free-$5",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>venue: "Spring-Ford High School",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>url: "https://www.spring-ford.net/",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>source: "Local Partner"</p>
+<p class="p1"><span class="Apple-converted-space">  </span>},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{</p>
+<p class="p1"><span class="Apple-converted-space">    </span>id: "local-4",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>name: "Royersford Public Library Events",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>date: "2025-12-31",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>city: "Royersford",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>state: "PA",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>category: "Community",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>description: "Story time, book clubs, educational programs, and community events. Check library calendar for upcoming activities.",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>price: "Free",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>venue: "Royersford Free Public Library",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>url: "https://mclinc.org/royersford/",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>source: "Local Partner"</p>
+<p class="p1"><span class="Apple-converted-space">  </span>},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{</p>
+<p class="p1"><span class="Apple-converted-space">    </span>id: "local-5",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>name: "Royersford Farmers Market",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>date: "2025-06-01",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>city: "Royersford",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>state: "PA",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>category: "Food",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>description: "Weekly farmers market featuring local produce, baked goods, crafts, and artisan products. Saturdays during season.",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>price: "Free admission",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>venue: "Royersford Borough",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>url: "https://www.royersfordborough.com/",</p>
+<p class="p1"><span class="Apple-converted-space">    </span>source: "Local Partner"</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p1">];</p>
+<p class="p2"><br></p>
+<p class="p1">function EventFinder() {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const [search, setSearch] = useState("");</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const [category, setCategory] = useState("All");</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const [allEvents, setAllEvents] = useState([...localEvents]);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const [loading, setLoading] = useState(false);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const [hasSearched, setHasSearched] = useState(false);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>const categories = ["All", "Concerts", "Sports", "Festivals", "Arts", "Food", "Community", "Family"];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>// Search Ticketmaster + Eventbrite</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const searchEvents = async () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>setLoading(true);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>setHasSearched(true);</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const apiEvents = [];</p>
+<p class="p2"><span class="Apple-converted-space">      </span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>// Ticketmaster API - FREE (5000 calls/day)</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const tmResponse = await fetch(`https://app.ticketmaster.com/discovery/v2/events.json?apikey=Vo2OY2CCcxx6WwOMa9a0m8thGnGMFIr5&amp;city=Royersford&amp;stateCode=PA&amp;radius=25&amp;size=50`);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const tmData = await tmResponse.json();</p>
+<p class="p2"><span class="Apple-converted-space">      </span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (tmData._embedded?.events) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>tmData._embedded.events.forEach(event =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>apiEvents.push({</p>
+<p class="p1"><span class="Apple-converted-space">            </span>id: `tm-${event.id}`,</p>
+<p class="p1"><span class="Apple-converted-space">            </span>name: event.name,</p>
+<p class="p1"><span class="Apple-converted-space">            </span>date: event.dates.start.localDate,</p>
+<p class="p1"><span class="Apple-converted-space">            </span>city: event._embedded?.venues?.[0]?.city?.name || "Royersford",</p>
+<p class="p1"><span class="Apple-converted-space">            </span>state: event._embedded?.venues?.[0]?.state?.stateCode || "PA",</p>
+<p class="p1"><span class="Apple-converted-space">            </span>category: event.classifications?.[0]?.segment?.name || "Entertainment",</p>
+<p class="p1"><span class="Apple-converted-space">            </span>description: event.info || event.pleaseNote || `${event.name} at ${event._embedded?.venues?.[0]?.name || 'venue'}`,</p>
+<p class="p1"><span class="Apple-converted-space">            </span>price: event.priceRanges ? `${event.priceRanges[0].min}-${event.priceRanges[0].max}` : "See Website",</p>
+<p class="p1"><span class="Apple-converted-space">            </span>venue: event._embedded?.venues?.[0]?.name || "",</p>
+<p class="p1"><span class="Apple-converted-space">            </span>url: event.url,</p>
+<p class="p1"><span class="Apple-converted-space">            </span>source: "Ticketmaster"</p>
+<p class="p1"><span class="Apple-converted-space">          </span>});</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><span class="Apple-converted-space">      </span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>// Eventbrite API - FREE (1000 calls/hour)</p>
+<p class="p1"><span class="Apple-converted-space">      </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const ebResponse = await fetch(`https://www.eventbriteapi.com/v3/events/search/?location.address=Royersford,PA&amp;location.within=25mi&amp;token=T6RTGNB5BNIHV7SUJFME`);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const ebData = await ebResponse.json();</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (ebData.events) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>ebData.events.forEach(event =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>apiEvents.push({</p>
+<p class="p1"><span class="Apple-converted-space">              </span>id: `eb-${event.id}`,</p>
+<p class="p1"><span class="Apple-converted-space">              </span>name: event.name.text,</p>
+<p class="p1"><span class="Apple-converted-space">              </span>date: event.start.local.split('T')[0],</p>
+<p class="p1"><span class="Apple-converted-space">              </span>city: event.venue?.address?.city || "Royersford",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>state: event.venue?.address?.region || "PA",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>category: event.category?.name || "Community",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>description: event.description?.text?.substring(0, 150) || event.summary || "See event page for details",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>price: event.is_free ? "Free" : "See Website",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>venue: event.venue?.name || "",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>url: event.url,</p>
+<p class="p1"><span class="Apple-converted-space">              </span>source: "Eventbrite"</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p1"><span class="Apple-converted-space">          </span>});</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>} catch (error) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>console.log("Eventbrite search completed");</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><span class="Apple-converted-space">      </span></p>
+<p class="p1"><span class="Apple-converted-space">      </span>// Combine with local events</p>
+<p class="p1"><span class="Apple-converted-space">      </span>setAllEvents([...localEvents, ...apiEvents]);</p>
+<p class="p2"><span class="Apple-converted-space">      </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>} catch (error) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>console.error("Error fetching events:", error);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>} finally {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>setLoading(false);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>const filtered = useMemo(() =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>return allEvents.filter(e =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const matchSearch = !search ||<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>e.name.toLowerCase().includes(search.toLowerCase()) ||<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>e.description.toLowerCase().includes(search.toLowerCase()) ||</p>
+<p class="p1"><span class="Apple-converted-space">        </span>e.venue?.toLowerCase().includes(search.toLowerCase());</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const matchCat = category === "All" || e.category === category;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>return matchSearch &amp;&amp; matchCat;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}).sort((a, b) =&gt; new Date(a.date) - new Date(b.date));</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}, [allEvents, search, category]);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>return (</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div className="bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-100 py-8 min-h-screen"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div className="max-w-7xl mx-auto px-4"&gt;</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>{/* Search Box */}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div className="bg-white rounded-2xl shadow-xl p-6 mb-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4"&gt;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;input<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">              </span>type="text"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">              </span>placeholder="Search events..."<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">              </span>value={search}<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">              </span>onChange={e =&gt; setSearch(e.target.value)}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>className="w-full px-4 py-3 border-2 border-indigo-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"</p>
+<p class="p1"><span class="Apple-converted-space">            </span>/&gt;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;select<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">              </span>value={category}<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">              </span>onChange={e =&gt; setCategory(e.target.value)}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white"</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>{categories.map(c =&gt; &lt;option key={c} value={c}&gt;{c}&lt;/option&gt;)}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/select&gt;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">              </span>onClick={searchEvents}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>disabled={loading}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white py-3 px-6 rounded-lg font-semibold transition-all disabled:opacity-50"</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>{loading ? "Searching..." : hasSearched ? "Refresh Events" : "Search Events"}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">          </span></p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div className="flex justify-between items-center text-sm"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p className="text-gray-500"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span><span class="s1">🎯</span> Searching Ticketmaster, Eventbrite &amp; local Royersford venues</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p className="text-gray-600"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;span className="font-semibold text-indigo-600"&gt;{filtered.length}&lt;/span&gt; events found</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>{/* Loading */}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>{loading &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div className="text-center py-16"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div className="w-12 h-12 mx-auto mb-4 border-4 border-indigo-200 border-t-indigo-600 rounded-full animate-spin"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p className="text-gray-600 text-lg"&gt;Searching for events...&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>)}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>{/* Events Grid */}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>{!loading &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{filtered.map(e =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div key={e.id} className="bg-white rounded-xl shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div className="p-6"&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                  </span></p>
+<p class="p1"><span class="Apple-converted-space">                  </span>{/* Header */}</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div className="flex justify-between items-start mb-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 className="text-xl font-bold text-gray-800 flex-1 pr-2"&gt;{e.name}&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span className="bg-gradient-to-r from-indigo-100 to-purple-100 text-indigo-700 text-xs px-3 py-1 rounded-full font-semibold whitespace-nowrap"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>{e.category}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                  </span></p>
+<p class="p1"><span class="Apple-converted-space">                  </span>{/* Source Badge */}</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>{e.source &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div className="mb-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;span className="bg-green-100 text-green-700 text-xs px-2 py-1 rounded font-semibold"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span><span class="s1">⭐</span> {e.source}</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>)}</p>
+<p class="p2"><span class="Apple-converted-space">                  </span></p>
+<p class="p1"><span class="Apple-converted-space">                  </span>{/* Description */}</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;p className="text-gray-600 text-sm mb-4 line-clamp-3"&gt;{e.description}&lt;/p&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                  </span></p>
+<p class="p1"><span class="Apple-converted-space">                  </span>{/* Details */}</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div className="space-y-2 mb-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div className="text-gray-700 text-sm flex items-start"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;span className="mr-2"&gt;<span class="s1">📅</span>&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>{new Date(e.date).getFullYear() === 2025 &amp;&amp; new Date(e.date).getMonth() === 11 ?<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                          </span>"Year-Round / Check Website" :<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                          </span>new Date(e.date).toLocaleDateString('en-US', {month:'long', day:'numeric', year:'numeric'})</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div className="text-gray-700 text-sm flex items-start"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;span className="mr-2"&gt;<span class="s1">📍</span>&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;span&gt;{e.venue || `${e.city}, ${e.state}`}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div className="text-gray-700 text-sm font-semibold flex items-start"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;span className="mr-2"&gt;<span class="s1">💵</span>&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;span&gt;{e.price}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                  </span></p>
+<p class="p1"><span class="Apple-converted-space">                  </span>{/* CTA Button */}</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>{e.url ? (</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;a<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                      </span>href={e.url}<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                      </span>target="_blank"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                      </span>rel="noopener noreferrer"</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>className="block w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white py-2 px-4 rounded-lg text-center font-semibold transition-all"</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>View Details <span class="s2">→</span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>) : (</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div className="w-full bg-gray-100 text-gray-500 py-2 px-4 rounded-lg font-semibold text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>More Info Coming Soon</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>)}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>))}</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>)}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>{/* No Results */}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>{!loading &amp;&amp; filtered.length === 0 &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div className="text-center py-16 bg-white rounded-2xl shadow-lg"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p className="text-gray-500 text-xl mb-2"&gt;No events found&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p className="text-gray-400"&gt;Try adjusting your search or category filter&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>)}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>{/* Submit Event CTA */}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div className="mt-12 bg-gradient-to-r from-indigo-50 to-purple-50 border-2 border-indigo-200 rounded-2xl p-8 text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;h3 className="text-2xl font-bold text-indigo-900 mb-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span><span class="s1">📢</span> Have an Event to Add?</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;p className="text-indigo-700 mb-4 max-w-2xl mx-auto"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>Are you hosting an event in Royersford, Limerick, or Upper Providence?<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>We'd love to feature it! Local businesses and organizations - contact us to get listed.</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div className="flex flex-wrap justify-center gap-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;a<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">              </span>href="mailto:karilen@karilenmays.com?subject=Add%20Event%20to%20Royersford%20Events"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">              </span>className="inline-block bg-indigo-600 hover:bg-indigo-700 text-white py-3 px-8 rounded-lg font-bold text-lg transition-all shadow-lg hover:shadow-xl"</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>Submit Your Event</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;a<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">              </span>href="mailto:karilen@karilenmays.com?subject=Partnership%20Inquiry"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">              </span>className="inline-block bg-white hover:bg-gray-50 text-indigo-600 border-2 border-indigo-600 py-3 px-8 rounded-lg font-bold text-lg transition-all"</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>Partner With Us</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>{/* Footer Note */}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div className="mt-8 text-center text-sm text-gray-500"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;p&gt;Events powered by Ticketmaster, Eventbrite, and local Royersford partners&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;p className="mt-1"&gt;Updated regularly • Free to use • Community-focused&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>);</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">ReactDOM.render(&lt;EventFinder /&gt;, document.getElementById('event-root'));</p>
+<p class="p1">&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
